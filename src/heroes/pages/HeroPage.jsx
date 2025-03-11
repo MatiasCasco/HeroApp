@@ -1,50 +1,63 @@
-import {Navigate, useNavigate, useParams} from "react-router-dom";
-import {getHeroById} from "../helpers";
-
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { getHeroById } from "../helpers";
 
 export const HeroPage = () => {
-    const {id} = useParams();
-    const heroImageUrl =`/assets/heroes/${id}.jpg`;
+    const { id } = useParams();
+    const heroImageUrl = `/assets/heroes/${id}.jpg`;
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const hero = getHeroById(id);
 
-     const onNavigateBack = () => {
-         navigate(-1);
-         // window.history.back();  retrosede una pagina
-     }
+    const onNavigateBack = () => {
+        navigate(-1);
+    };
 
     if (!hero) {
         return <Navigate to="/marvel" />;
     }
 
     return (
-        <div className="row mt-1">
-            <div className="col-3">
-                <img
-                    src={heroImageUrl}
-                    alt={hero.superhero}
-                    className="img-thumbnail animate__animated animate__fadeInLeft"
-                />
-            </div>
-            <div className="col-9">
-                <h3>{hero.superhero}</h3>
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item"> <b>Alter ego: </b>{ hero.alter_ego }</li>
-                    <li className="list-group-item"> <b>Publisher: </b>{ hero.publisher }</li>
-                    <li className="list-group-item"> <b>First appearence: </b>{ hero.first_appearance }</li>
+        <div className="container mt-5">
+            <div className="row">
 
-                    <h5 className="mt-3"> Characters </h5>
-                    <p>{ hero.characters }</p>
-                </ul>
-                <button
-                    onClick={onNavigateBack}
-                    className="btn btn-outline-primary"
-                >
-                    Volver
-                </button>
+                <div className="col-md-4 text-center">
+                    <img
+                        src={heroImageUrl}
+                        alt={hero.superhero}
+                        className="img-fluid rounded shadow-lg animate__animated animate__fadeInLeft"
+                        style={{ maxHeight: '400px', objectFit: 'cover' }}
+                    />
+                </div>
+
+                <div className="col-md-8">
+                    <h1 className="text-primary">{hero.superhero}</h1>
+                    <hr />
+
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item bg-secondary-subtle">
+                            <b>Alter ego:</b> {hero.alter_ego}
+                        </li>
+                        <li className="list-group-item bg-light">
+                            <b>Publisher:</b> {hero.publisher}
+                        </li>
+                        <li className="list-group-item bg-secondary-subtle">
+                            <b>First appearance:</b> {hero.first_appearance}
+                        </li>
+                    </ul>
+
+                    <h5 className="mt-4">Characters</h5>
+                    <p>{hero.characters}</p>
+
+                    <button
+                        onClick={onNavigateBack}
+                        className="btn btn-outline-dark btn-lg mt-3 animate__animated animate__fadeInUp"
+                        style={{ transition: 'all 0.3s ease' }}
+                    >
+                        Volver
+                    </button>
+                </div>
             </div>
         </div>
     );
-}
+};
