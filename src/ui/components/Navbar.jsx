@@ -17,56 +17,34 @@ export const Navbar = () => {
     }
 
     return (
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-2">
+        <nav className="navbar bg-dark text-white p-2">
+            <div className="container-fluid d-flex justify-content-between align-items-center">
+                {/* Logo */}
+                    <Link className="navbar-brand text-white " to="/">
+                        Asociaciones
+                    </Link>
 
-            <Link
-                className="navbar-brand"
-                to="/"
-            >
-                Asociaciones
-            </Link>
+                    {/* Enlaces */}
+                    <div className="d-flex flex-wrap gap-3 ms-3">
+                        <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active text-info' : ''}`} to="/marvel">
+                            Marvel
+                        </NavLink>
+                        <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active text-info' : ''}`} to="/dc">
+                            DC
+                        </NavLink>
+                        <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active text-info' : ''}`} to="/search">
+                            Search
+                        </NavLink>
+                    </div>
 
-            <div className="navbar-collapse">
-                <div className="navbar-nav">
 
-                    <NavLink
-                        className={ ({isActive}) => `nav-item nav-link ${isActive ? 'active' : ''}` }
-                        to="/marvel"
-                    >
-                        Marvel
-                    </NavLink>
-
-                    <NavLink
-                        className={ ({isActive}) => `nav-item nav-link ${isActive ? 'active' : ''}` }
-                        to="/dc"
-                    >
-                        DC
-                    </NavLink>
-
-                    <NavLink to="/search" className={ ({isActive}) => `nav-item nav-link ${isActive ? 'active' : ''}` }>
-                        Search
-                    </NavLink>
-                    {/*<NavLink to="/hero" className={ ({isActive}) => `nav-item nav-link ${isActive ? 'active' : ''}` }>
-                        Hero
-                    </NavLink>*/}
-                </div>
-            </div>
-
-            <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
-                <ul className="navbar-nav ml-auto">
-
-                    <span className="nav-item nav-link text-info">
-                       {user?.name}
-                    </span>
-
-                    <button
-                        className="nav-item nav-link btn"
-                        onClick={onLogOut}
-                    >
+                {/* Usuario y Logout */}
+                <div className="d-flex align-items-center flex-wrap">
+                    <span className="me-3 text-info">{user?.name}</span>
+                    <button className="btn btn-outline-light" onClick={onLogOut}>
                         Logout
                     </button>
-
-                </ul>
+                </div>
             </div>
         </nav>
     );
