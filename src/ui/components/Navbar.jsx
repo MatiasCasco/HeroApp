@@ -1,6 +1,7 @@
 import {useContext} from 'react';
 import {Link, NavLink, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../auth';
+import {NavbarLinks} from "./NavbarLinks.jsx";
 
 export const Navbar = () => {
 
@@ -20,22 +21,12 @@ export const Navbar = () => {
         <nav className="navbar bg-dark text-white p-2">
             <div className="container-fluid d-flex justify-content-between align-items-center">
                 {/* Logo */}
-                    <Link className="navbar-brand text-white " to="/">
+                    <Link className="navbar-brand text-white d-none d-sm-block" to="/">
                         Asociaciones
                     </Link>
 
                     {/* Enlaces */}
-                    <div className="d-flex flex-wrap gap-3 ms-3">
-                        <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active text-info' : ''}`} to="/marvel">
-                            Marvel
-                        </NavLink>
-                        <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active text-info' : ''}`} to="/dc">
-                            DC
-                        </NavLink>
-                        <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active text-info' : ''}`} to="/search">
-                            Search
-                        </NavLink>
-                    </div>
+                    <NavbarLinks />
 
 
                 {/* Usuario y Logout */}
